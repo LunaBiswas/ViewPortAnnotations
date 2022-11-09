@@ -72,29 +72,28 @@ Filter in annotataions within a view port.
 
 5. To query from MongoDB from a client,
   
-  5.1 Create python virtual environment:      python3 -m venv venv
-
-  3.2 Activate the virtual environment:       source venv/bin/activate
+  5.1 Keep viewportForm.html in direcrory ./templates
   
-  5.3 Install Flask by running:               pip install Flask
+  5.2 Create python virtual environment:      python3 -m venv venv
 
-  5.4 Start the server:                       Start the server: export FLASK_APP=filterJSONWebMongoDBGeo2D.py; flask run     
+  5.3 Activate the virtual environment:       source venv/bin/activate
+  
+  5.4 Install Flask by running:               pip install Flask
+
+  5.5 Start the server:                       Start the server: export FLASK_APP=filterJSONWebMongoDBGeo2D.py; flask run     
       Access API from http://127.0.0.1:5000. 
       Enter name of MongoDB in the file name field.
   
 
 
-**Source**           : filterJSONWeb xBinary.py
+**Source**           : filterJSONWebMongoDBGeo2D.py
 
-**Inputs**           : JSON file name, (x,y) coordinates of the top left and bottom right corners of the viewport.
+**Inputs**           : MongoDB name, (x,y) coordinates of the top left and bottom right corners of the viewport.
 
-**Outputs**          : A list containing the total execution time in seconds, and the filtered JSON file.
+**Outputs**          : The filtered JSON file.
 
 **Technologies used**: Python, Flask, HTML.
 
-**Logic**            : Reads the JSON file, finds first occurrence of minimum x coordinate and last occurrence of maximum x occurrence, then does binary                          search for y range within the x range found.
+**Index**            : A GEO2D index is created in MongoDB for x and y coordinates as points.
 
-**Time complexity**  : O(log n + k) for n number of point annotations in the JSON file and k records found within the min and max x coordinates.
-
-**Space complexity** : O(n) 
-
+**Query**            : $geoWithin , $box query
