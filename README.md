@@ -2,6 +2,49 @@
 Filter in annotataions within a view port.
 
 
+** Query from MongoDB using selective query on compound index **
+
+**Process**          :
+
+1. Keep JSON file in directory ./JSONdir, if it is a single JSON file. If there are multiple files pertaining to the same WSI, keep the JSON directory inside ./JSONdir
+
+2. Load JSON data to Mongo DB and create indices, by running following command in terminal
+
+              python3 buildMongoDB.py <name of file or directory>
+  
+3. Modify x and y ranges and name of MongoDB in line 32 of filterJSONMongoDB1.py
+    
+4. Query from MongoDB by running following command in terminal
+  
+              python3 filterJSONMongoDB1.py
+
+5. To query from MongoDB from a client using REST API,
+  
+  5.1 Create python virtual environment:      python3 -m venv venv
+
+  5.2 Activate the virtual environment:       source venv/bin/activate
+  
+  5.3 Install Flask by running:               pip install Flask
+
+  5.4 Start the server:                       Start the server: export FLASK_APP=filterJSONWeb.py; flask run     
+      Access API from http://127.0.0.1:5000. 
+    
+  
+
+
+**Source**           : filterJSONWebMongoDBGeo2D.py, filterJSONMongoDB.py
+
+**Inputs**           : MongoDB name, (x,y) coordinates of the top left and bottom right corners of the viewport.
+
+**Outputs**          : The filtered JSON file.
+
+**Technologies used**: Python, Flask, HTML.
+
+**Index**            : A GEO2D index is created in MongoDB for x and y coordinates as points.
+
+**Query**            : $geoWithin , $box query
+
+------------------------------------------------------------------------------------------------------------------------------
 **Source**           : filterJSONWeb Linear.py
 
 **Inputs**           : JSON file name, (x,y) coordinates of the top left and bottom right corners of the viewport.
