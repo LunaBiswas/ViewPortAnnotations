@@ -58,7 +58,29 @@ Filter in annotataions within a view port.
 
 **Process**          :
 
-1. 
+1. Keep JSON file in directory ./JSONdir, if it is a single JSON file. If there are multiple files pertaining to the same WSI, keep the JSON directory inside ./JSONdir
+
+2. Load JSON data to Mongo DB and create GEO2D index, by running following command in terminal
+
+              python3 createBSON.py <name of file or directory>
+  
+3. Modify x and y ranges and name of MongoDB in line 28 of filterJSONMongoDB.py
+    
+4. Query from MongoDB by running following command in terminal
+  
+              python3 filterJSONMongoDB.py
+
+5. To query from MongoDB from a client,
+  
+  4.1 Create python virtual environment:      python3 -m venv venv
+
+  4.2 Activate the virtual environment:       source venv/bin/activate
+  
+  4.3 Install Flask by running:               source venv/bin/activate
+
+  4.4
+  
+
 
 **Source**           : filterJSONWeb xBinary.py
 
