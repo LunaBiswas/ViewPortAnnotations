@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Enter (x,y) coordinates of the top-left corner of the view port.</h1>
+
+<form action="http://127.0.0.1:5000/", METHOD="POST">
+  <label for="fname">Name of the WSI:</label>
+  <input type="text" id="fname" name="fname" placeholder="nuc_location_new1" value="nuc_location_new1"><br><br>
+  <label for="x1">(x=</label>
+  <input type="number" id="x1" name="x1" size="1" placeholder="200" value="200">
+  <label for="y1">,y=</label>
+  <input type="number" id="y1" name="y1" size="1" placeholder="200" value="200">
+  <label >)</label>
+  <div style="text-align:center;padding-top:80px; padding-bottom:8px;width:100%;height:100px;border:1px solid #000">Viewport</div>
+  
+  <div style="display: flex; justify-content: flex-end">
+    <label>(1700,2200)</label>
+  </div><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
