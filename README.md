@@ -13,7 +13,7 @@ Filter in annotataions within a view port.
 
         python3 filterJSONComparison.py
 
-
+---------------------------------------------------------------------------------------------------------------------
 
 ** Query from MongoDB using selective query on compound index **
 
