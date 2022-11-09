@@ -72,13 +72,15 @@ Filter in annotataions within a view port.
 
 5. To query from MongoDB from a client,
   
-  4.1 Create python virtual environment:      python3 -m venv venv
+  5.1 Create python virtual environment:      python3 -m venv venv
 
-  4.2 Activate the virtual environment:       source venv/bin/activate
+  3.2 Activate the virtual environment:       source venv/bin/activate
   
-  4.3 Install Flask by running:               source venv/bin/activate
+  5.3 Install Flask by running:               pip install Flask
 
-  4.4
+  5.4 Start the server:                       Start the server: export FLASK_APP=filterJSONWebMongoDBGeo2D.py; flask run     
+      Access API from http://127.0.0.1:5000. 
+      Enter name of MongoDB in the file name field.
   
 
 
