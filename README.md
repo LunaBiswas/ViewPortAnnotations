@@ -1,6 +1,19 @@
 # ViewPortAnnotations
 Filter in annotataions within a view port.
 
+**Comparison process for MongoDB and RTree approaches**
+
+1. Execute steps 1 and 2 from below approach "** Query from MongoDB using selective query on compound index **"
+
+2. Download code from https://github.com/viralpandey/nuclei-detection-py-api, and execute steps 1,2,5,6 from readme file.
+
+3. Modify line 115 in filterJSONComparison.py to specify number of times comparison to be done.
+
+4. Run comparison by following command in terminal
+
+        python3 filterJSONComparison.py
+
+
 
 ** Query from MongoDB using selective query on compound index **
 
