@@ -44,7 +44,9 @@ Filter in annotataions within a view port.
 
 **Logic**            : Reads the JSON file, creates a 2D range tree using Python list and stores the list in pickle format. In case a range tree for the JSON is already there, finds records with (x,y) range from the range tree.
 
-**Time complexity**  : Construction: O(n (log n)^2)
+**Time complexity**  : 
+
+                       Construction: O(n (log n)^2)
 
                        Query: O(log n*log m + k) for n number of point annotations in the JSON file, m number of y nodes in the x interval and k records found within the interval.
 
