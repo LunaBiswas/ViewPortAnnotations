@@ -40,17 +40,18 @@ Filter in annotataions within a view port.
   
 
 
-**Source**           : filterJSONWebMongoDBGeo2D.py, filterJSONMongoDB.py
+**Source**           : filterJSONWeb.py, filterJSONMongoDB1.py
 
-**Inputs**           : MongoDB name, (x,y) coordinates of the top left and bottom right corners of the viewport.
+**Inputs**           : MongoDB name, (x,y) coordinates of the top left and bottom right corners of the viewport, class names.
 
 **Outputs**          : The filtered JSON file.
 
 **Technologies used**: Python, Flask, HTML.
 
-**Index**            : A GEO2D index is created in MongoDB for x and y coordinates as points.
+**Index**            : Compound index on class, x, y.
+                       Index on header (All fields from JSON file except "data")
 
-**Query**            : $geoWithin , $box query
+**Query**            : $in
 
 ------------------------------------------------------------------------------------------------------------------------------
 **Source**           : filterJSONWeb Linear.py
