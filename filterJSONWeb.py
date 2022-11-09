@@ -1,40 +1,33 @@
+import os
+import sys
 import json
-from flask import Flask, render_template, request
 from time import process_time
+from pymongo import MongoClient
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 @app.get("/")
 def showForm():
-    return render_template("form.html")
+    return render_template("WSIviewportForm.html")
 
-#/JSONname>/<x1>/<y1>/<x2>/<y2>
 @app.post("/")
-#def filterJSON(JSONname,x1,y1,x2,y2):
 def filterJSON():
-    t1_start = process_time()
-    JSONname = request.form.get('fname')
-    x1 = int(request.form.get('x1'))
-    x2 = int(request.form.get('x2'))
-    y1 = int(request.form.get('y1'))
-    y2 = int(request.form.get('y2'))
-#    x1, y1, x2, y2 = list(map(int,[postData[x1],postData[y1],postData[x2],postData[y2]]))
-    jsonFile = open('JSONdir/'+JSONname,'r')
-    fullJSONdata = json.load(jsonFile)
-    inPointAnnotations = fullJSONdata["data"]
-    '''
-    outPointAnnotations = [] 
-    for point in inPointAnnotations:
-        if point[0] >= x1 and point[0] <= x2 and point[1] >= y1 and point[1] <= y2:
-            outPointAnnotations.append(point)
-    '''
-    #outPointAnnotations = list(filter(lambda point: point[0] >= x1 and point[0] <= x2 and point[1] >= y1 and point[1] <= y2,inPointAnnotations))
-    outPointAnnotations = [point for point in inPointAnnotations if point[0] >= x1 and point[0] <= x2 and point[1] >= y1 and point[1] <= y2]
-    fullJSONdata["data"] = outPointAnnotations
 
-    outFileName = JSONname[:-5] + '_' + str(x1) + '_' + str(y1) + '_' + str(x2) + '_' + str(y2) + '.json'
-    with open('JSONdir/'+outFileName, 'w') as file:
-        file.write(json.dumps(fullJSONdata))
-    t1_stop = process_time()
-    return [t1_stop-t1_start, fullJSONdata]
-  
+    # retrieve input variable values 
+    file = request.form.get('fname').split('.')[0]                            # Get MongoDB file name from POST request
+    x1,y1 = list(map(int,list(map(request.form.get,['x1','y1']))))            # Get top left corner of the viewport from POST request
+    xrange1 = [x for x in range(x1,x1+1500)]                                  # Viewport size is around 1500 pixels x 2000 pixels
+    yrange1 = [x for x in range(y1,y1+2000)]
+    crange = [request.form.get('class')]
+    print('crange=',crange)                     
+
+    # connect to MongoDB
+    client = MongoClient()
+    db = client[file]
+    collection = db[file]
+
+    fullJSONdata = list(db.collection.find({'header.status': "success" }).limit(1))[0]['header']
+    fullJSONdata["data"] = list(x['point'] for x in db.collection.find({"point.c": {'$in' : crange},"point.x": {'$in' : xrange1},"point.y": {'$in' : yrange1}}))
+    
+    return [fullJSONdata]
