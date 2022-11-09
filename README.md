@@ -86,7 +86,7 @@ Filter in annotataions within a view port.
   
 
 
-**Source**           : filterJSONWebMongoDBGeo2D.py
+**Source**           : filterJSONWebMongoDBGeo2D.py, filterJSONMongoDB.py
 
 **Inputs**           : MongoDB name, (x,y) coordinates of the top left and bottom right corners of the viewport.
 
