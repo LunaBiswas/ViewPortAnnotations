@@ -54,6 +54,8 @@ Filter in annotataions within a view port.
 **Query**            : $in
 
 ------------------------------------------------------------------------------------------------------------------------------
+## Other approaches ##
+
 **Source**           : filterJSONWeb Linear.py
 
 **Inputs**           : JSON file name, (x,y) coordinates of the top left and bottom right corners of the viewport.
