@@ -1,6 +1,10 @@
 # ViewPortAnnotations
 Filter in annotataions within a view port.
 
+config1.py: contains the sample JSON APIs to and from the filter annotation program
+
+---------------------------------------------------------------------------------------------------------------------
+
 **Comparison process for MongoDB and RTree approaches**
 
 1. Execute steps 1 and 2 from below approach "** Query from MongoDB using selective query on compound index **"
