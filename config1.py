@@ -61,6 +61,8 @@ SAMLE_JSON_UPDATE = {
     "delete":{
         [(8700,2100,3),(90,20,1)]
     }
+    "creator":"Dr. Jaya"
+    "institution":"Pramana"
 }
 
 # Sample JSON for loading annotation data from Unified model to database
